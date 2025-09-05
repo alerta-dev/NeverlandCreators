@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fandub Hub — Materiales y Recursos</title>
+  <meta name="description" content="Descarga programas, plugins, audios y tutoriales para fandub. Diseño moderno, limpio y profesional inspirado en vgen.co." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff;               /* fondo blanco predominante */
+      --fg:#0f0f10;               /* texto negro */
+      --muted:#6b6b6f;            /* texto secundario */
+      --line:#ececf1;             /* bordes sutiles */
+      --card:#ffffff;             /* tarjetas blancas */
+      --accent:#0f0f10;           /* acentos negros */
+      --radius:20px;
+      --shadow:0 10px 25px rgba(0,0,0,.06);
+      --shadow-sm:0 6px 16px rgba(0,0,0,.05);
+      --shadow-lg:0 20px 50px rgba(0,0,0,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;
+      color:var(--fg); background:var(--bg); line-height:1.6; letter-spacing:.2px;
+    }
+    .container{width:100%; max-width:1200px; margin:0 auto; padding:0 20px}
+    /* Navbar */
+    .nav{position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(12px);
+         background:rgba(255,255,255,.75); border-bottom:1px solid var(--line)}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; height:72px}
+    .brand{display:flex; gap:12px; align-items:center}
+    .logo{width:36px; height:36px; border-radius:12px; background:var(--fg); position:relative; box-shadow:var(--shadow-sm)}
+    .logo::after{content:""; position:absolute; inset:6px; border-radius:9px; background:linear-gradient(135deg,#fff,rgba(255,255,255,.0)); mix-blend:overlay;}
+    .brand h1{font-size:18px; margin:0; font-weight:700}
+    .nav-links{display:flex; gap:18px; align-items:center; flex-wrap:wrap}
+    .nav-links a{padding:8px 12px; border-radius:12px; text-decoration:none; color:var(--fg); font-weight:500; border:1px solid transparent}
+    .nav-links a:hover{border-color:var(--line); box-shadow:var(--shadow-sm)}
+    .nav-cta{display:flex; gap:10px}
+    .btn{appearance:none; border:1px solid var(--fg); color:var(--bg); background:var(--fg); border-radius:14px; padding:10px 16px; font-weight:600; cursor:pointer}
+    .btn.secondary{background:transparent; color:var(--fg)}
+    .btn:hover{transform:translateY(-1px); box-shadow:var(--shadow-sm)}
+
+    /* Hero */
+    .hero{position:relative; padding:80px 0 40px}
+    .hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center}
+    .headline{font-size:44px; line-height:1.1; margin:0 0 16px; letter-spacing:.4px}
+    .sub{font-size:18px; color:var(--muted); margin:0 0 26px}
+    .hero-cta{display:flex; gap:12px; flex-wrap:wrap}
+    .chip{display:inline-flex; gap:10px; align-items:center; font-weight:600; border:1px solid var(--line); padding:8px 12px; border-radius:999px}
+    .chip .dot{width:8px; height:8px; border-radius:999px; background:var(--fg)}
+    .hero-art{position:relative; min-height:300px; border-radius:var(--radius); background:radial-gradient(1200px 400px at 20% -10%, rgba(0,0,0,.06), transparent 60%), var(--card); border:1px solid var(--line); box-shadow:var(--shadow)}
+    .hero-art::before{content:""; position:absolute; inset:0; background:conic-gradient(from 180deg at 50% 50%, rgba(0,0,0,.03), transparent 35%);
+      border-radius:inherit}
+    .hero-badges{position:absolute; inset:auto 16px 16px 16px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+    .badge{padding:14px; border-radius:16px; background:#fff; border:1px solid var(--line); box-shadow:var(--shadow-sm)}
+    .badge b{display:block; font-size:14px}
+    .badge span{font-size:12px; color:var(--muted)}
+
+    /* Section header */
+    section{padding:56px 0}
+    .section-head{display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:22px}
+    .section-head h2{margin:0; font-size:26px}
+    .controls{display:flex; gap:10px; flex-wrap:wrap}
+    .input{display:flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:12px; padding:10px 12px; background:#fff; min-width:240px}
+    .input input{border:0; outline:0; width:100%; font:inherit; background:transparent}
+    select.input{padding:10px 12px}
+
+    /* Grid cards */
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .card{position:relative; border:1px solid var(--line); background:var(--card); border-radius:20px; overflow:hidden; box-shadow:var(--shadow); transition:transform .25s ease, box-shadow .3s ease}
+    .card:hover{transform:translateY(-4px); box-shadow:var(--shadow-lg)}
+    .thumb{aspect-ratio:16/9; background:linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.02)); display:flex; align-items:center; justify-content:center; border-bottom:1px solid var(--line)}
+    .thumb svg{width:88px; height:88px}
+    .card-body{padding:16px}
+    .title{font-weight:700; margin:2px 0 8px}
+    .desc{color:var(--muted); font-size:14px; margin:0 0 14px; min-height:40px}
+    .tags{display:flex; gap:8px; flex-wrap:wrap}
+    .tag{border:1px solid var(--line); padding:6px 10px; font-size:12px; border-radius:999px}
+    .card-actions{display:flex; gap:8px; padding:12px 16px 16px}
+    .ghost{background:transparent; color:var(--fg); border:1px solid var(--line)}
+    .link{display:inline-flex; align-items:center; gap:8px; text-decoration:none}
+
+    /* Pill nav section selector */
+    .section-pills{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .pill{padding:8px 12px; border-radius:999px; border:1px solid var(--line); cursor:pointer; user-select:none}
+    .pill[aria-pressed="true"]{background:var(--fg); color:#fff; border-color:var(--fg)}
+
+    /* Modal */
+    .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.35); backdrop-filter:blur(6px); z-index:100}
+    .modal.open{display:flex}
+    .modal-card{width:min(760px,90vw); background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:var(--shadow-lg); overflow:hidden}
+    .modal-head{display:flex; align-items:center; justify-content:space-between; padding:16px 18px; border-bottom:1px solid var(--line)}
+    .modal-body{padding:18px}
+    .modal-actions{display:flex; gap:10px; padding:0 18px 18px}
+
+    /* Footer */
+    footer{border-top:1px solid var(--line); padding:32px 0 42px; color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:1024px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .hero-grid{grid-template-columns:1fr; gap:24px}
+    }
+    @media (max-width:640px){
+      .grid{grid-template-columns:1fr}
+      .headline{font-size:36px}
+      .nav-inner{height:64px}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>Fandub Hub</h1>
+      </div>
+      <div class="nav-links" role="navigation" aria-label="Secciones principales">
+        <a href="#inicio">Inicio</a>
+        <a href="#programas">Programas</a>
+        <a href="#plugins">Plugins</a>
+        <a href="#audios">Audios</a>
+        <a href="#otros">Otros</a>
+        <a href="#tutoriales">Tutoriales</a>
+      </div>
+      <div class="nav-cta">
+        <button class="btn secondary" id="btnScrollTop" aria-label="Volver arriba">↑</button>
+        <a class="btn" href="#programas">Explorar</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="inicio" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="chip" aria-hidden="true"><span class="dot"></span> Comunidad de fandub</div>
+        <h2 class="headline">Recursos modernos para tu <span style="text-decoration:underline">fandub</span>.</h2>
+        <p class="sub">Descarga <b>programas</b>, <b>plugins</b>, <b>audios</b>, <b>tutoriales</b> y más. Todo en un solo lugar, con un diseño limpio, profesional y animaciones suaves.</p>
+        <div class="hero-cta">
+          <a href="#programas" class="btn">Ver materiales</a>
+          <a href="#tutoriales" class="btn secondary">Aprender</a>
+        </div>
+        <div class="section-pills" style="margin-top:18px">
+          <button class="pill" data-jump="#programas">Programas</button>
+          <button class="pill" data-jump="#plugins">Plugins</button>
+          <button class="pill" data-jump="#audios">Audios</button>
+          <button class="pill" data-jump="#otros">Otros</button>
+          <button class="pill" data-jump="#tutoriales">Tutoriales</button>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="hero-badges">
+          <div class="badge"><b>+120</b><span>Recursos curados</span></div>
+          <div class="badge"><b>24/7</b><span>Disponible</span></div>
+          <div class="badge"><b>0 deps</b><span>Listo para Netlify</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROGRAMAS -->
+  <section id="programas">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Programas</h2>
+          <div class="section-pills" role="tablist" aria-label="Filtros rápidos">
+            <button class="pill" data-filter="all" aria-pressed="true">Todos</button>
+            <button class="pill" data-filter="edicion">Edición</button>
+            <button class="pill" data-filter="audio">Audio</button>
+            <button class="pill" data-filter="video">Video</button>
+          </div>
+        </div>
+        <div class="controls">
+          <label class="input" aria-label="Buscar programas">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <input type="search" placeholder="Buscar…" data-search="programas" />
+          </label>
+        </div>
+      </div>
+      <div class="grid" data-grid="programas"></div>
+    </div>
+  </section>
+
+  <!-- PLUGINS -->
+  <section id="plugins">
+    <div class="container">
+      <div class="section-head">
+        <h2>Plugins</h2>
+        <div class="controls">
+          <label class="input" aria-label="Buscar plugins">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <input type="search" placeholder="Buscar…" data-search="plugins" />
+          </label>
+          <select class="input" data-select="plugins">
+            <option value="all">Todos</option>
+            <option value="premiere">Premiere Pro</option>
+            <option value="aftereffects">After Effects</option>
+            <option value="audition">Audition</option>
+            <option value="davinci">DaVinci</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid" data-grid="plugins"></div>
+    </div>
+  </section>
+
+  <!-- AUDIOS -->
+  <section id="audios">
+    <div class="container">
+      <div class="section-head">
+        <h2>Audios</h2>
+        <div class="controls">
+          <label class="input" aria-label="Buscar audios">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <input type="search" placeholder="Buscar…" data-search="audios" />
+          </label>
+          <select class="input" data-select="audios">
+            <option value="all">Todos</option>
+            <option value="fx">Efectos</option>
+            <option value="bgm">Música de fondo</option>
+            <option value="vocals">Voces</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid" data-grid="audios"></div>
+    </div>
+  </section>
+
+  <!-- OTROS -->
+  <section id="otros">
+    <div class="container">
+      <div class="section-head">
+        <h2>Otros</h2>
+        <div class="controls">
+          <label class="input" aria-label="Buscar otros">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <input type="search" placeholder="Buscar…" data-search="otros" />
+          </label>
+          <select class="input" data-select="otros">
+            <option value="all">Todos</option>
+            <option value="recursos">Recursos</option>
+            <option value="plantillas">Plantillas</option>
+            <option value="utilidades">Utilidades</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid" data-grid="otros"></div>
+    </div>
+  </section>
+
+  <!-- TUTORIALES -->
+  <section id="tutoriales">
+    <div class="container">
+      <div class="section-head">
+        <h2>Tutoriales</h2>
+        <div class="controls">
+          <label class="input" aria-label="Buscar tutoriales">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <input type="search" placeholder="Buscar…" data-search="tutoriales" />
+          </label>
+          <select class="input" data-select="tutoriales">
+            <option value="all">Todos</option>
+            <option value="principiante">Principiante</option>
+            <option value="intermedio">Intermedio</option>
+            <option value="avanzado">Avanzado</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid" data-grid="tutoriales"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <span>© <span id="year"></span> Fandub Hub — Hecho con ❤️ para la comunidad</span>
+      <a class="link" href="#inicio">Volver arriba ↑</a>
+    </div>
+  </footer>
+
+  <!-- GSAP + ScrollTrigger (animaciones) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <!-- Lenis (scroll suave) -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.38/bundled/lenis.min.js"></script>
+
+  <script>
+    // ====== DATA (edita con tus enlaces reales) ======
+    const DB = {
+      programas: [
+        {
+          id:'pr1', title:'DaVinci Resolve (Free)', desc:'Edición de video profesional, color y audio en un solo lugar.',
+          tags:['video','edicion'], thumb:'video', link:'#', more:'Ideal para fandub por su Fairlight para audio y ADR.'
+        },
+        {
+          id:'pr2', title:'Audacity', desc:'Editor de audio libre, sencillo y potente.',
+          tags:['audio'], thumb:'audio', link:'#', more:'Perfecto para limpiar voces, normalizar y reducir ruido.'
+        },
+        {
+          id:'pr3', title:'OBS Studio', desc:'Grabación y streaming. Útil para capturas de voz e imagen.',
+          tags:['video','utilidad'], thumb:'util', link:'#', more:'Usa filtros VST y compresor para voces.'
+        }
+      ],
+      plugins:[
+        { id:'pl1', title:'Vocal Rider (Waves)', desc:'Nivelación automática de voz.', tags:['audition','premiere','audio'], thumb:'plugin', link:'#', more:'Ahorra tiempo en mezcla de diálogos.' },
+        { id:'pl2', title:'RX Voice De-noise', desc:'Reducción inteligente de ruido.', tags:['audition','davinci','audio'], thumb:'plugin', link:'#', more:'Limpia ambientes sin artefactos.' },
+        { id:'pl3', title:'SRT Importer', desc:'Gestión de subtítulos SRT.', tags:['premiere','aftereffects','utilidad'], thumb:'plugin', link:'#', more:'Flujo de subtítulos para lip-sync.' }
+      ],
+      audios:[
+        { id:'au1', title:'FX — Whoosh Pack', desc:'Efectos de transición para escenas.', tags:['fx'], thumb:'audio', link:'#', more:'Colección WAV/48khz.' },
+        { id:'au2', title:'BGM — Ambient Loops', desc:'Fondos musicales sin copyright.', tags:['bgm'], thumb:'audio', link:'#', more:'Perfecto para narraciones.' },
+        { id:'au3', title:'Voces — Librería', desc:'Muestras de voces para pruebas.', tags:['vocals'], thumb:'audio', link:'#', more:'Úsalo solo con fines educativos.' }
+      ],
+      otros:[
+        { id:'ot1', title:'Plantillas PSD', desc:'Miniaturas y portadas.', tags:['plantillas'], thumb:'util', link:'#', more:'Incluye tamaños para YouTube/Twitch.' },
+        { id:'ot2', title:'Guía de Estilo', desc:'Buenas prácticas de audio y video.', tags:['recursos'], thumb:'util', link:'#', more:'Checklist para publicar fandubs.' },
+        { id:'ot3', title:'Utilidades VST Gratis', desc:'Compresores/EQ gratuitos.', tags:['utilidades'], thumb:'plugin', link:'#', more:'Lista curada de plugins.' }
+      ],
+      tutoriales:[
+        { id:'tu1', title:'Inicio rápido en fandub', desc:'Flujo básico de grabación y edición.', tags:['principiante'], thumb:'util', link:'#', more:'Micrófono, sala, niveles, exportación.' },
+        { id:'tu2', title:'Limpieza de voz pro', desc:'Cadena de procesamiento práctica.', tags:['intermedio'], thumb:'audio', link:'#', more:'Gate → EQ → Compresión → De-esser.' },
+        { id:'tu3', title:'Lip-sync en After Effects', desc:'Técnicas para sincronizar labios.', tags:['avanzado','aftereffects'], thumb:'video', link:'#', more:'Expresiones y marcadores.' }
+      ]
+    };
+
+    // ====== HELPERS ======
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
+
+    function icon(kind){
+      const paths={
+        video:'M8 5h8a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3zm10 3 6-3v14l-6-3V8z',
+        audio:'M9 3v12.132A3.5 3.5 0 1 0 11 18V7h4V3H9z',
+        util:'M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7zm5 1h6v2H9V8zm0 4h6v2H9v-2z',
+        plugin:'M12 2l3 3-7 7-3-3 7-7zm2 8l3 3-6 6-3-3 6-6z'
+      };
+      return `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="${paths[kind]||paths.util}"/></svg>`;
+    }
+
+    function cardTemplate(item){
+      const tagEls = item.tags.map(t=>`<span class="tag">#${t}</span>`).join('');
+      return `
+      <article class="card" data-tags="${item.tags.join(' ')}" data-title="${item.title.toLowerCase()}">
+        <div class="thumb">${icon(item.thumb)}</div>
+        <div class="card-body">
+          <div class="title">${item.title}</div>
+          <p class="desc">${item.desc}</p>
+          <div class="tags">${tagEls}</div>
+        </div>
+        <div class="card-actions">
+          <a class="btn ghost" href="${item.link}" target="_blank" rel="noopener">Descargar</a>
+          <button class="btn secondary" data-more='${JSON.stringify(item).replaceAll("'","&apos;")}'>Ver más</button>
+        </div>
+      </article>`;
+    }
+
+    function renderGrid(kind){
+      const grid = document.querySelector(`[data-grid="${kind}"]`);
+      grid.innerHTML = DB[kind].map(cardTemplate).join('');
+    }
+
+    ['programas','plugins','audios','otros','tutoriales'].forEach(renderGrid);
+
+    // ====== BUSCAR + FILTRAR ======
+    function applyFilter(kind){
+      const q = ($(`[data-search="${kind}"]`)?.value || '').trim().toLowerCase();
+      const sel = ($(`[data-select="${kind}"]`)?.value || 'all');
+      const pillActive = $(`#${kind} .section-pills .pill[aria-pressed="true"]`);
+      const pill = pillActive?.dataset.filter || 'all';
+      $$(`[data-grid="${kind}"] .card`).forEach(card=>{
+        const title = card.getAttribute('data-title');
+        const tags  = card.getAttribute('data-tags');
+        const matchText = !q || title.includes(q);
+        const matchSel  = sel==='all' || tags.includes(sel);
+        const matchPill = pill==='all' || tags.includes(pill);
+        card.style.display = (matchText && matchSel && matchPill) ? '' : 'none';
+      });
+    }
+
+    ['programas','plugins','audios','otros','tutoriales'].forEach(kind=>{
+      $(`[data-search="${kind}"]`)?.addEventListener('input', ()=>applyFilter(kind));
+      $(`[data-select="${kind}"]`)?.addEventListener('change', ()=>applyFilter(kind));
+      // Pills (solo en secciones que las tengan)
+      $$('#'+kind+' .section-pills .pill').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          $$('#'+kind+' .section-pills .pill').forEach(p=>p.setAttribute('aria-pressed','false'));
+          btn.setAttribute('aria-pressed','true');
+          applyFilter(kind);
+        });
+      });
+    });
+
+    // Hero pills jump
+    $$('.pill[data-jump]').forEach(p=>p.addEventListener('click',()=>document.querySelector(p.dataset.jump).scrollIntoView({behavior:'smooth'})));
+
+    // Modal
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML = `
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-head">
+          <strong id="modalTitle">Detalle</strong>
+          <button class="btn secondary" id="modalClose">Cerrar</button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+        <div class="modal-actions" id="modalActions"></div>
+      </div>`;
+    document.body.appendChild(modal);
+
+    document.body.addEventListener('click', (e)=>{
+      const btn = e.target.closest('button[data-more]');
+      if(btn){
+        const item = JSON.parse(btn.getAttribute('data-more').replaceAll('&apos;','\''));
+        $('#modalTitle').textContent = item.title;
+        $('#modalBody').innerHTML = `<p style="color:var(--muted); margin:0 0 6px">${item.desc}</p><p>${item.more||''}</p>`;
+        $('#modalActions').innerHTML = `<a class="btn" href="${item.link}" target="_blank" rel="noopener">Descargar</a>`;
+        modal.classList.add('open');
+      }
+      if(e.target.id==='modalClose' || e.target===modal) modal.classList.remove('open');
+    });
+
+    // Scroll arriba
+    $('#btnScrollTop').addEventListener('click', ()=>window.scrollTo({top:0, behavior:'smooth'}));
+    $('#year').textContent = new Date().getFullYear();
+
+    // ====== ANIMACIONES (GSAP) ======
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Lenis smooth scroll
+    const lenis = new Lenis({ lerp:0.09, smoothWheel:true });
+    function raf(time){ lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
+
+    // Fade-in inicial
+    gsap.from('.hero .chip, .headline, .sub, .hero-cta .btn, .hero-art', {
+      opacity:0, y:20, duration:.8, stagger:.08, ease:'power2.out'
+    });
+
+    // Stagger cards por sección cuando entran al viewport
+    $$('.grid').forEach(grid=>{
+      gsap.from(grid.children, {
+        opacity:0, y:18, duration:.6, stagger:.06, ease:'power2.out',
+        scrollTrigger: { trigger:grid, start:'top 85%' }
+      });
+    });
+
+    // Navbar sutil shadow al hacer scroll
+    ScrollTrigger.create({
+      start:1, onUpdate(){
+        const nav = document.querySelector('.nav');
+        nav.style.boxShadow = window.scrollY>4 ? 'var(--shadow-sm)' : 'none';
+      }
+    });
+  </script>
+</body>
+</html>
